@@ -31,6 +31,7 @@
 <script>
 import Container from "./components/Container.vue";
 import postdata from './assets/postdata.js'
+import axios from 'axios'
 
 export default {
   name: "App",
@@ -41,6 +42,19 @@ export default {
   },
   components: {
     Container,
+  },
+  methods: {
+    more() {
+      axios.get(`https://codingapple1.github.io/vue/more0.json`)
+            .then(res => {
+              this.게시물.push(res.data)
+              //this.article.push(res.data)
+              //this.articleNum++
+            })
+            .catch(e => {
+              console.log(e)
+            })
+    },
   },
 };
 </script>
