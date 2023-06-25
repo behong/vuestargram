@@ -1,7 +1,8 @@
 <template>
     <div>
-        <Post />
-        <Post />
+        <Post :post="게시물[0]" />
+        <Post :post="게시물[1]" />
+
     </div>
 </template>
   
@@ -26,7 +27,8 @@
       article : Array,
       step : Number,
       objectUrl : String,
-      filterId : String
+      filterId : String,
+      게시물 : Array
     }
   }
   </script>

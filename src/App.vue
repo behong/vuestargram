@@ -16,7 +16,7 @@
     :step="step"
     :objectUrl="objectUrl"
     :filterId="filterId"
-    :게시물="postdata"
+    :게시물="게시물"
   />
   <button @click="more">더보기</button>
 
