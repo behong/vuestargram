@@ -20,6 +20,14 @@
   />
   <button @click="more">더보기</button>
 
+<div v-if="step == 1">내용1</div>
+<div v-if="step == 2">내용2</div>
+<div v-if="step == 3">내용3</div>
+<button @click="step = 1">1</button>
+<button @click="step = 2">2</button>
+<button @click="step = 3">3</button>
+<div style="margin-top: 500px;"></div>
+
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload" type="file" id="file" class="inputfile" />
@@ -38,6 +46,8 @@ export default {
   data(){
     return{
       게시물: postdata,
+      버튼횟수: 0,
+      step : 1,
     }
   },
   components: {
@@ -45,9 +55,10 @@ export default {
   },
   methods: {
     more() {
-      axios.get(`https://codingapple1.github.io/vue/more0.json`)
+      axios.get(`https://codingapple1.github.io/vue/more${this.버튼횟수}.json`)
             .then(res => {
               this.게시물.push(res.data)
+              this.버튼횟수++
               //this.article.push(res.data)
               //this.articleNum++
             })
@@ -137,3 +148,4 @@ ul {
   border-left: 1px solid #eee;
 }
 </style>
+
