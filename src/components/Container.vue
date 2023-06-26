@@ -5,7 +5,7 @@
         </div>
 
         <div v-if="step == 1">
-            <div class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
+            <div :class="changeFilter" class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
             <div class="filters">
               <FilterBox :filterName="a" :objectUrl="objectUrl" v-for="(a,i) in imgFilter" :key="i">
               {{a}}
@@ -14,7 +14,7 @@
         </div>
 
         <div v-if="step == 2">
-            <div class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
+            <div :class="changeFilter" class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
             <div class="write">
                 <textarea @input="$emit('write',$event.target.value)" class="write-box">write!</textarea>
             </div>
@@ -44,7 +44,7 @@
       article : Array,
       step : Number,
       objectUrl : String,
-      filterId : String,
+      changeFilter : String,
       게시물 : Array
     }
   }

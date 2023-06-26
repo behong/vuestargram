@@ -15,10 +15,10 @@
     :article="article"
     :step="step"
     :objectUrl="objectUrl"
-    :filterId="filterId"
+    :changeFilter="changeFilter"
     :게시물="게시물"
   />
-  
+
   <button @click="more">더보기</button>
 
   <div class="footer">
@@ -43,7 +43,15 @@ export default {
       step: 0,
       objectUrl: '',
       postingText : '',
+      changeFilter :'',
     }
+  },
+  mounted(){
+    this.emitter.on('filterCls', (a)=>{
+    console.log('현재 img ', this.objectUrl)
+    this.changeFilter = a;
+      console.log(a);
+    });
   },
   components: {
     Container,
@@ -78,7 +86,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.postingText,
-        filter: "perpetua"
+        filter: this.changeFilter,
        };
       this.게시물.unshift(내게시뮬);
       this.step = 0;
