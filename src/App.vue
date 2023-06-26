@@ -9,8 +9,8 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
-<H4> 안녕 {{ $store.state.name }}</H4>
-<button @click="$store.commit('이름변경')">버튼</button>
+<H4> 안녕 {{ $store.state.name }} / {{ $store.state.age }}</H4>
+<button @click="$store.commit('나이변경')">버튼</button>
 
   <Container
     @write="postingText = $event"
