@@ -1,24 +1,43 @@
 <template>
     <div>
-        <Post :post="게시물[i]" v-for="(a,i) in 게시물" :key="i" />
+        <div v-if="step == 0">
+            <Post :post="게시물[i]" v-for="(a,i) in 게시물" :key="i" />
+        </div>
+
+        <div v-if="step == 1">
+            <div class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
+            <div class="filters">
+              <FilterBox :filterName="a" :objectUrl="objectUrl" v-for="(a,i) in imgFilter" :key="i">
+              {{a}}
+              </FilterBox>
+            </div>
+        </div>
+
+        <div v-if="step == 2">
+            <div class="upload-image" :style="{backgroundImage:`url(${objectUrl}`}"></div>
+            <div class="write">
+                <textarea @input="$emit('write',$event.target.value)" class="write-box">write!</textarea>
+            </div>
+        </div>
+
     </div>
 </template>
   
   <script>
   import Post from  './Post.vue'
-//   import FilterBox from './FilterBox.vue'
-//   import filterData from '../assets/imgFilter.js'
+  import FilterBox from './FilterBox.vue'
+  import filterData from '../assets/imgFilter.js'
 //   import MyPage from './MyPage.vue'
   
   export default {
     data() {
       return {
-        //imgFilter: filterData
+        imgFilter: filterData
       }
     },
     components: {
-        Post
-      //FilterBox,
+      Post,
+      FilterBox,
       //MyPage,
     },
     props: {

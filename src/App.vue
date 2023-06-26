@@ -1,10 +1,10 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li @click="step = 0">Cancel</li>
+      <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li @click="step = 2" v-if="step == 1">Next</li>
+      <li @click="step++" v-if="step == 1">Next</li>
       <li @click="publish" v-if="step == 2">Finish</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
@@ -18,15 +18,8 @@
     :filterId="filterId"
     :게시물="게시물"
   />
+  
   <button @click="more">더보기</button>
-
-<div v-if="step == 1">내용1</div>
-<div v-if="step == 2">내용2</div>
-<div v-if="step == 3">내용3</div>
-<button @click="step = 1">1</button>
-<button @click="step = 2">2</button>
-<button @click="step = 3">3</button>
-<div style="margin-top: 500px;"></div>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -47,7 +40,9 @@ export default {
     return{
       게시물: postdata,
       버튼횟수: 0,
-      step : 1,
+      step: 0,
+      objectUrl: '',
+      postingText : '',
     }
   },
   components: {
@@ -65,6 +60,28 @@ export default {
             .catch(e => {
               console.log(e)
             })
+    },
+    upload(e){
+      let 파일 = e.target.files;
+      console.log(파일);
+      let url = URL.createObjectURL(파일[0]);
+      console.log(url);
+      this.objectUrl = url;
+      this.step++;
+    },
+    publish(){
+      let 내게시뮬 ={
+        name: "Kim Hyun",
+        userImage: "https://placeimg.com/100/100/arch",
+        postImage: this.objectUrl,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.postingText,
+        filter: "perpetua"
+       };
+      this.게시물.unshift(내게시뮬);
+      this.step = 0;
     },
   },
 };
