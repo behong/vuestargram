@@ -9,7 +9,7 @@
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
-
+<H4> 안녕 {{ $store.state.name }}</H4>
   <Container
     @write="postingText = $event"
     :article="article"
