@@ -7,4 +7,7 @@ let app = createApp(App)
 //글로벌 변수 저장소...
 app.config.globalProperties.emitter = emitter;
 
-app.mount('#app')
+import store from './store.js'
+
+
+app.use(store).mount('#app')
